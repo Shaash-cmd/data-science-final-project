@@ -16,7 +16,7 @@ summary(CSD)
 str(CSD)
 
 #remove rows with NA value 
-clean_CSD <- na.omit(CSD)
+CSD <- na.omit(CSD)
 
 #Identify duplicate row 
 duplicate_rows <- duplicated(CSD)
@@ -38,7 +38,6 @@ sapply(CSD_clean,class)
 CSD_clean <- CSD_clean %>%
   mutate(Age_Group = ifelse(Age < 28, "Young",ifelse(Age < 40, "Middle", "Old")))
 
-view
 
 CSD_male <- filter(CSD_clean, Gender == 0)  # filter out males
 
@@ -72,7 +71,7 @@ CSD_cleanedold <- CSD_old %>%
 
 # filter out middle people
 
-CSD_middle <- filter(CSD_clean, Age_group == "Middle")
+CSD_middle <- filter(CSD_clean, Age_Group == "Middle")
 
 CSD_cleanedmiddle <- CSD_middle %>% 
   count(Method) %>%
@@ -84,7 +83,7 @@ CSD_cleanedmiddle <- CSD_middle %>%
 # filter out young people
 
 
-CSD_young <- filter(CSD_clean, Age_group == "Young")
+CSD_young <- filter(CSD_clean, Age_Group == "Young")
 
 CSD_cleanedyoung <- CSD_young %>% 
   count(Method) %>%
