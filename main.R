@@ -66,7 +66,7 @@ CSD_cleanedold <- CSD_old %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-#View(CSD_cleanedold)
+View(CSD_cleanedold)
 
 
 # filter out middle people
@@ -77,7 +77,7 @@ CSD_cleanedmiddle <- CSD_middle %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-#View(CSD_cleanedmiddle)
+View(CSD_cleanedmiddle)
 
 
 # filter out young people
@@ -89,7 +89,7 @@ CSD_cleanedyoung <- CSD_young %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-#View(CSD_cleanedyoung)
+View(CSD_cleanedyoung)
 
 
 
@@ -136,8 +136,7 @@ ggplot (CSD_cleanedold)+
     name= "Payment Method",
     values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
     labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
-  ) #ai fixed + on wrong line
-
+  ) 
 
 
 # chart middle aged people payment method
@@ -151,7 +150,7 @@ ggplot (CSD_cleanedmiddle)+
     name= "Payment Method",
     values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
     labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
-  ) #ai fixed + on wrong line
+  ) 
 
 
 # chart young people payment method
@@ -165,10 +164,4 @@ ggplot (CSD_cleanedyoung)+
     name= "Payment Method",
     values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
     labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
-  ) #ai fixed + on wrong line
-
-
-
-
-
-
+  ) 
