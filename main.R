@@ -52,7 +52,7 @@ CSD_cleanedmale <- CSD_male %>%
 
 CSD_female <- filter(CSD_clean, Gender == 1) #filter out females
 
-CSD_cleanedfemale <- CSD_male %>% 
+CSD_cleanedfemale <- CSD_female %>% 
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
@@ -61,7 +61,7 @@ CSD_cleanedfemale <- CSD_male %>%
 
 # filter out old people
 
-CSD_old <- filter(CSD_clean, Age_group == "Old")
+CSD_old <- filter(CSD_clean, Age_Group == "Old")
 
 CSD_cleanedold <- CSD_old %>% 
   count(Method) %>%
@@ -72,7 +72,7 @@ CSD_cleanedold <- CSD_old %>%
 
 # filter out middle people
 
-CSD_old <- filter(CSD_clean, Age_group == "Middle")
+CSD_middle <- filter(CSD_clean, Age_group == "Middle")
 
 CSD_cleanedmiddle <- CSD_middle %>% 
   count(Method) %>%
@@ -84,7 +84,7 @@ CSD_cleanedmiddle <- CSD_middle %>%
 # filter out young people
 
 
-CSD_old <- filter(CSD_clean, Age_group == "Young")
+CSD_young <- filter(CSD_clean, Age_group == "Young")
 
 CSD_cleanedyoung <- CSD_young %>% 
   count(Method) %>%
@@ -94,7 +94,7 @@ CSD_cleanedyoung <- CSD_young %>%
 
 
 
-# chart male payment method
+# pie chart of male payment method
 
 ggplot(CSD_cleanedmale) +
   geom_bar(aes(x = "", y = pct, fill = factor(Method)), stat = "identity") +
@@ -121,20 +121,6 @@ ggplot(CSD_cleanedfemale) +
     labels = c("0" = "Digital Wallet", "1" = "Card", "2" = "Paypal", "3" = "Other")
   )
 
-
-#Chart for payment method of men
-
-ggplot (CSD_cleanedmale)+
-  geom_col(aes ( x = Method, y = pct, fill = factor (Method)))+
-  theme(axis.text.x = element_text(size = 5 , angle = 45 , vjust = 0.5))+
-  labs ( title = "Percentage of Pay Method Used by Men",
-         x = "Payment Method",
-         y = " pct" ) +
-  scale_fill_manual(
-    name= "Payment Method",
-    values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
-    labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
-  ) #ai fixed + on wrong line
 
 
 
@@ -170,7 +156,7 @@ ggplot (CSD_cleanedmiddle)+
 
 
 # chart young people payment method
-ggplot (CSD_cleanedmiddle)+
+ggplot (CSD_cleanedyoung)+
   geom_col(aes ( x = Method, y = pct, fill = factor (Method)))+
   theme(axis.text.x = element_text(size = 5 , angle = 45 , vjust = 0.5))+
   labs ( title = "Percentage of Payment Method used by people under 28",
