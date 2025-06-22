@@ -9,7 +9,7 @@ CSD <- read.csv("Customer_Sales.csv")
 View(CSD)
 
 #View first few rows of data
-head(CSD)
+#head(CSD)
 
 #Get summary statistic of data 
 summary(CSD)
@@ -23,7 +23,7 @@ duplicate_rows <- duplicated(CSD)
 
 #Rename columns 
 colnames(CSD) [c(1,4,5,6,7,8,9)] <- c("ID", "Revenue", "Purchases", "Date", "Value", "Method", "Time")
-View (CSD)
+#View (CSD)
 
 sapply(CSD,class)
 
@@ -31,7 +31,7 @@ sapply(CSD,class)
 #convert data type of data
 CSD_clean <- CSD %>%
   mutate(Date = as.Date(Date, format = "%d.%m.%y"))
-View(CSD_clean)
+#View(CSD_clean)
 
 sapply(CSD_clean,class)
 
@@ -46,7 +46,7 @@ CSD_cleanedmale <- CSD_male %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-View(CSD_cleanedmale)
+#View(CSD_cleanedmale)
 
 
 
@@ -56,7 +56,7 @@ CSD_cleanedfemale <- CSD_male %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-View(CSD_cleanedfemale)
+#View(CSD_cleanedfemale)
 
 
 # filter out old people
@@ -67,7 +67,7 @@ CSD_cleanedold <- CSD_old %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-View(CSD_cleanedold)
+#View(CSD_cleanedold)
 
 
 # filter out middle people
@@ -78,7 +78,7 @@ CSD_cleanemiddle <- CSD_middle %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-View(CSD_cleanedmiddle)
+#View(CSD_cleanedmiddle)
 
 
 # filter out young people
@@ -90,7 +90,7 @@ CSD_cleanedyoung <- CSD_young %>%
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
-View(CSD_cleanedyoung)
+#View(CSD_cleanedyoung)
 
 
 
@@ -116,8 +116,7 @@ ggplot(CSD_cleanedfemale) +
   coord_polar("y", start = 0) +
   theme_void() +
   labs(title = "Percentage of Payment Method used by Women") +
-  scale_fill_manual(
-    name = "Payment Method",
+  scale_fill_manual( name = "Payment Method",
     values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2" = "#6B8CAE", "3" = "#B8860B"),
     labels = c("0" = "Digital Wallet", "1" = "Card", "2" = "Paypal", "3" = "Other")
   )
@@ -133,6 +132,23 @@ ggplot (CSD_cleanedmale)+
          y = " pct" ) +
   scale_fill_manual(
     name= "Payment Method",
+    values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
+    labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
+  ) #ai fixed + on wrong line
+
+
+
+#Chart for payment method of old people 
+
+# chart old people payment method
+ggplot (CSD_cleanedold)+
+  geom_col(aes ( x = Method, y = pct, fill = factor (Method)))+
+  theme(axis.text.x = element_text(size = 5 , angle = 45 , vjust = 0.5))+
+  labs ( title = "Percentage of Payment Method used by people over 40",
+         x = "Payment Method",
+         y = " pct" ) +
+  scale_fill_manual(
+    name= "Payment Method",
     values = c("0" = "
 #8B4A6B", "1" = "
 #5A7A5A", "2"= "
@@ -141,9 +157,6 @@ ggplot (CSD_cleanedmale)+
     labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
   ) #ai fixed + on wrong line
 
-
-
-#Chart for payment method of old people 
 
 
 
