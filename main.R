@@ -74,7 +74,7 @@ CSD_cleanedold <- CSD_old %>%
 
 CSD_old <- filter(CSD_clean, Age_group == "Middle")
 
-CSD_cleanemiddle <- CSD_middle %>% 
+CSD_cleanedmiddle <- CSD_middle %>% 
   count(Method) %>%
   mutate (pct = n / sum(n) * 100) # calculate percentages
 
@@ -149,26 +149,41 @@ ggplot (CSD_cleanedold)+
          y = " pct" ) +
   scale_fill_manual(
     name= "Payment Method",
-    values = c("0" = "
-#8B4A6B", "1" = "
-#5A7A5A", "2"= "
-#6B8CAE", "3"="
-#B8860B"),
+    values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
+    labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
+  ) #ai fixed + on wrong line
+
+
+
+# chart middle aged people payment method
+ggplot (CSD_cleanedmiddle)+
+  geom_col(aes ( x = Method, y = pct, fill = factor (Method)))+
+  theme(axis.text.x = element_text(size = 5 , angle = 45 , vjust = 0.5))+
+  labs ( title = "Percentage of Payment Method used by people between 28 and 40",
+         x = "Payment Method",
+         y = " pct" ) +
+  scale_fill_manual(
+    name= "Payment Method",
+    values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
+    labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
+  ) #ai fixed + on wrong line
+
+
+# chart young people payment method
+ggplot (CSD_cleanedmiddle)+
+  geom_col(aes ( x = Method, y = pct, fill = factor (Method)))+
+  theme(axis.text.x = element_text(size = 5 , angle = 45 , vjust = 0.5))+
+  labs ( title = "Percentage of Payment Method used by people under 28",
+         x = "Payment Method",
+         y = " pct" ) +
+  scale_fill_manual(
+    name= "Payment Method",
+    values = c("0" = "#8B4A6B", "1" = "#5A7A5A", "2"= "#6B8CAE", "3"="#B8860B"),
     labels = c("0" = "Digital Wallet", "1" = "Card", "2" ="Paypal","3"="Other")
   ) #ai fixed + on wrong line
 
 
 
 
-#Chart 3 
-
-
-
-#Chart 3 
-
-
-
-
-#Chart 3 
 
 
